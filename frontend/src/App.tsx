@@ -1,21 +1,9 @@
-// import "./App.css";
-
-// function App() {
-//   return (
-//     <>
-//       <div>HOLA</div>
-//     </>
-//   );
-// }
-
-// export default App;
-
-import React, { useState } from "react";
 import { ChatSidebar } from "./components/ChatSidebar";
 import { ChatHeader } from "./components/ChatHeader";
 import { ChatArea } from "./components/ChatArea";
 import { MessageInput } from "./components/MessageInput";
 import type { Message } from "./components/MessageBubble";
+import { useState } from "react";
 
 // Mock data
 const mockContacts = [
