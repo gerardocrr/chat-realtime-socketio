@@ -5,7 +5,6 @@ export interface Message {
   content: string;
   timestamp: string;
   sender: "me" | "other";
-  status?: "sent" | "delivered" | "read";
 }
 
 interface MessageBubbleProps {
