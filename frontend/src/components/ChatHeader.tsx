@@ -34,13 +34,6 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
             </p>
           </div>
         </div>
-
-        {/* Actions */}
-        <div className="flex items-center space-x-2">
-          <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-            Opciones
-          </button>
-        </div>
       </div>
     </div>
   );

@@ -4,9 +4,6 @@ interface ChatContact {
   id: string;
   name: string;
   lastMessage: string;
-  timestamp: string;
-  unreadCount: number;
-  avatar: string;
   isOnline: boolean;
 }
 
@@ -32,14 +29,14 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
       {/* Header */}
       <div className="p-4 border-b border-gray-200">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-semibold text-gray-900">Messages</h1>
+          <h1 className="text-xl font-semibold text-gray-900">Rooms</h1>
         </div>
 
         {/* Search */}
         <div className="relative">
           <input
             type="text"
-            placeholder="Search conversations..."
+            placeholder="Search rooms..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-2 pr-4 py-2 bg-gray-100 border-0 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
@@ -79,19 +76,11 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
                   <h3 className="font-medium text-gray-900 truncate">
                     {contact.name}
                   </h3>
-                  <span className="text-xs text-gray-500">
-                    {contact.timestamp}
-                  </span>
                 </div>
                 <div className="flex items-center justify-between mt-1">
                   <p className="text-sm text-gray-600 truncate">
                     {contact.lastMessage}
                   </p>
-                  {contact.unreadCount > 0 && (
-                    <span className="ml-2 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                      {contact.unreadCount}
-                    </span>
-                  )}
                 </div>
               </div>
             </div>
