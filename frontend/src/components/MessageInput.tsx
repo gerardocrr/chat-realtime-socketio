@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 import { socket } from "../socket";
+import type { Message } from "./MessageBubble";
 
-export const MessageInput = ({}) => {
+interface MessageInputProps {
+  messages: Message[];
+  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
+}
+
+export const MessageInput = ({ messages, setMessages }: MessageInputProps) => {
   const [message, setMessage] = useState("");
+  // const [messages, setMessages] = useState([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const newMessage = {
+      id: crypto.randomUUID(),
+      content: message,
+      from: "Me",
+    };
+    setMessages([...messages, newMessage]);
     socket.emit("message", message);
     setMessage("");
   };
