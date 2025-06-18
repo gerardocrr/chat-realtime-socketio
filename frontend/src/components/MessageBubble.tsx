@@ -3,8 +3,7 @@ import React from "react";
 export interface Message {
   id: string;
   content: string;
-  timestamp: string;
-  sender: "me" | "other";
+  from: string;
 }
 
 interface MessageBubbleProps {
@@ -12,7 +11,7 @@ interface MessageBubbleProps {
 }
 
 export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
-  const isMe = message.sender === "me";
+  const isMe = message.from === "Me";
 
   return (
     <div className={`flex ${isMe ? "justify-end" : "justify-start"} mb-4`}>
@@ -29,7 +28,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
             isMe ? "text-blue-100" : "text-gray-500"
           }`}
         >
-          <span className="text-xs">{message.timestamp}</span>
+          <span className="text-xs">{message.from}</span>
         </div>
       </div>
     </div>
