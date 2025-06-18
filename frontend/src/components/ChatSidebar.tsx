@@ -5,12 +5,14 @@ const contacts = [
   {
     id: "1",
     name: "Room #1",
-    lastMessage: "Hey! How was your day?",
-    isOnline: true,
   },
 ];
 
-export const ChatSidebar = () => {
+interface ChatSidebarProps {
+  isOnline: boolean;
+}
+
+export const ChatSidebar = ({ isOnline }: ChatSidebarProps) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredContacts = contacts.filter((contact) =>
@@ -53,9 +55,11 @@ export const ChatSidebar = () => {
                     .map((n) => n[0])
                     .join("")}
                 </div>
-                {contact.isOnline && (
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
-                )}
+                <div
+                  className={`absolute -bottom-1 -right-1 w-4 h-4 border-2 border-white rounded-full ${
+                    isOnline ? "bg-green-500" : "bg-red-500"
+                  }`}
+                ></div>
               </div>
 
               {/* Chat Info */}
@@ -67,7 +71,7 @@ export const ChatSidebar = () => {
                 </div>
                 <div className="flex items-center justify-between mt-1">
                   <p className="text-sm text-gray-600 truncate">
-                    {contact.lastMessage}
+                    {isOnline ? "Online" : "Offline"}
                   </p>
                 </div>
               </div>

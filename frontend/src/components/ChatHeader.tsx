@@ -21,13 +21,17 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
                 .map((n) => n[0])
                 .join("")}
             </div>
-            {isOnline && (
-              <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
-            )}
+            <div
+              className={`absolute -bottom-1 -right-1 w-3 h-3 border-2 border-white rounded-full ${
+                isOnline ? "bg-green-500" : "bg-red-500"
+              }`}
+            ></div>
           </div>
           <div>
             <h2 className="font-medium text-gray-900">{contactName}</h2>
-            <p className="text-xs text-gray-500">Online</p>
+            <p className="text-xs text-gray-500">
+              {isOnline ? "Online" : "Offline"}
+            </p>
           </div>
         </div>
       </div>

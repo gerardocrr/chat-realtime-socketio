@@ -5,11 +5,15 @@ import type { Message } from "./MessageBubble";
 interface MessageInputProps {
   messages: Message[];
   setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
+  isOnline: boolean;
 }
 
-export const MessageInput = ({ messages, setMessages }: MessageInputProps) => {
+export const MessageInput = ({
+  messages,
+  setMessages,
+  isOnline,
+}: MessageInputProps) => {
   const [message, setMessage] = useState("");
-  // const [messages, setMessages] = useState([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,11 +31,11 @@ export const MessageInput = ({ messages, setMessages }: MessageInputProps) => {
     <div className="bg-white border-t border-gray-200 p-4">
       <form onSubmit={handleSubmit} className="flex items-end space-x-3">
         <div className="flex-1 relative">
-          <textarea
+          <input
             value={message}
+            disabled={!isOnline}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type a message..."
-            rows={1}
             className="w-full px-4 py-3 pr-12 bg-gray-100 border-0 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all text-sm"
             style={{ minHeight: "44px", maxHeight: "120px" }}
           />
