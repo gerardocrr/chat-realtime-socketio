@@ -1,54 +1,31 @@
-# React + TypeScript + Vite
+# 💬 Chat en Tiempo Real con Socket.IO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación de chat en tiempo real construida con **Socket.IO**. El backend está desarrollado con **Express.js** y el frontend con **React** usando **Vite** como bundler.
 
-Currently, two official plugins are available:
+👉 [Ir a la app](https://chat-realtime-socketio.vercel.app)  
+> ⚠️ **Nota:** La conexión con el servidor puede tardar unos segundos mientras el backend se activa.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Características
 
-## Expanding the ESLint configuration
+- Comunicación en tiempo real usando WebSockets.
+- Visualización en vivo de los mensajes enviados.
+- Interfaz rápida y moderna con React y Vite.
+- Backend sencillo con Express + Socket.IO.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧱 Tecnologías
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Backend
+- Node.js
+- Express.js
+- Socket.IO
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Frontend
+- Vite
+- React
+- Socket.IO Client
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🖼️ Capturas
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+![image](https://github.com/user-attachments/assets/3d8dc67a-bfe8-4254-83eb-4a1069ee79fb)
+
+![image](https://github.com/user-attachments/assets/b7f8fa22-3be7-43f4-a607-e7078a6f1b43)
