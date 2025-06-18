@@ -9,19 +9,17 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST"],
+    origin: ["http://localhost:5173", "http://localhost:5174"],
   },
 });
 
 io.on("connection", (socket) => {
-  socket.on("create-something", (data, callback) => {
-    io.emit("foo", data); // reenviar a todos
-    callback(); // responder al frontend
-  });
-
-  socket.on("disconnect", () => {
-    console.log("Cliente desconectado:", socket.id);
+  socket.on("message", (content) => {
+    socket.broadcast.emit("message", {
+      id: crypto.randomUUID(),
+      content,
+      from: socket.id,
+    });
   });
 });
 
