@@ -1,11 +1,37 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MessageBubble, type Message } from "./MessageBubble";
 
-interface ChatAreaProps {
-  messages: Message[];
-}
+const mockMessages: { [key: string]: Message[] } = {
+  "1": [
+    {
+      id: "1",
+      content: "Hey there! How are you doing?",
+      timestamp: "10:30 AM",
+      sender: "other",
+    },
+    {
+      id: "2",
+      content: "I'm doing great, thanks for asking! How about you?",
+      timestamp: "10:32 AM",
+      sender: "me",
+    },
+    {
+      id: "3",
+      content: "I'm good too! Just working on some exciting projects.",
+      timestamp: "10:35 AM",
+      sender: "other",
+    },
+    {
+      id: "4",
+      content: "That sounds amazing! I'd love to hear more about them.",
+      timestamp: "10:37 AM",
+      sender: "me",
+    },
+  ],
+};
 
-export const ChatArea: React.FC<ChatAreaProps> = ({ messages }) => {
+export const ChatArea = () => {
+  const [messages, setMessages] = useState<Message[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -14,6 +40,7 @@ export const ChatArea: React.FC<ChatAreaProps> = ({ messages }) => {
 
   useEffect(() => {
     scrollToBottom();
+    setMessages(mockMessages[1]);
   }, [messages]);
 
   return (
