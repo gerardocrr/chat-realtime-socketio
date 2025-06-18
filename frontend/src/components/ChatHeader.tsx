@@ -3,13 +3,11 @@ import React from "react";
 interface ChatHeaderProps {
   contactName: string;
   isOnline: boolean;
-  lastSeen?: string;
 }
 
 export const ChatHeader: React.FC<ChatHeaderProps> = ({
   contactName,
   isOnline,
-  lastSeen,
 }) => {
   return (
     <div className="bg-white border-b border-gray-200 p-4">
@@ -29,9 +27,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
           </div>
           <div>
             <h2 className="font-medium text-gray-900">{contactName}</h2>
-            <p className="text-xs text-gray-500">
-              {isOnline ? "Online" : `Last seen ${lastSeen}`}
-            </p>
+            <p className="text-xs text-gray-500">Online</p>
           </div>
         </div>
       </div>
