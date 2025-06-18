@@ -1,46 +1,30 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { MessageBubble, type Message } from "./MessageBubble";
+import { socket } from "../socket";
 
-const mockMessages: { [key: string]: Message[] } = {
-  "1": [
-    {
-      id: "1",
-      content: "Hey there! How are you doing?",
-      timestamp: "10:30 AM",
-      sender: "other",
-    },
-    {
-      id: "2",
-      content: "I'm doing great, thanks for asking! How about you?",
-      timestamp: "10:32 AM",
-      sender: "me",
-    },
-    {
-      id: "3",
-      content: "I'm good too! Just working on some exciting projects.",
-      timestamp: "10:35 AM",
-      sender: "other",
-    },
-    {
-      id: "4",
-      content: "That sounds amazing! I'd love to hear more about them.",
-      timestamp: "10:37 AM",
-      sender: "me",
-    },
-  ],
-};
+interface ChatAreaProps {
+  messages: Message[];
+  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
+}
 
-export const ChatArea = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
+export const ChatArea = ({ messages, setMessages }: ChatAreaProps) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const receiveMesaage = (mesaage: any) => {
+    setMessages((state) => [...state, mesaage]);
+  };
+
   useEffect(() => {
     scrollToBottom();
-    setMessages(mockMessages[1]);
+    socket.on("message", receiveMesaage);
+
+    return () => {
+      socket.off("message", receiveMesaage);
+    };
   }, [messages]);
 
   return (
