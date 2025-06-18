@@ -1,23 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-interface ChatContact {
-  id: string;
-  name: string;
-  lastMessage: string;
-  isOnline: boolean;
-}
+// Mock data
+const contacts = [
+  {
+    id: "1",
+    name: "Room #1",
+    lastMessage: "Hey! How was your day?",
+    isOnline: true,
+  },
+];
 
-interface ChatSidebarProps {
-  contacts: ChatContact[];
-  activeChat: string;
-  onChatSelect: (chatId: string) => void;
-}
-
-export const ChatSidebar: React.FC<ChatSidebarProps> = ({
-  contacts,
-  activeChat,
-  onChatSelect,
-}) => {
+export const ChatSidebar = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredContacts = contacts.filter((contact) =>
@@ -49,12 +42,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
         {filteredContacts.map((contact) => (
           <div
             key={contact.id}
-            onClick={() => onChatSelect(contact.id)}
-            className={`p-4 cursor-pointer transition-all hover:bg-gray-50 ${
-              activeChat === contact.id
-                ? "bg-blue-50 border-r-2 border-blue-500"
-                : ""
-            }`}
+            className="p-4 cursor-pointer transition-all hover:bg-gray-50 bg-blue-50 border-r-2 border-blue-500"
           >
             <div className="flex items-start space-x-3">
               {/* Avatar */}
